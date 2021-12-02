@@ -22,10 +22,9 @@ Route _createRoute() {
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;
+      const curve = Curves.ease;
 
-      var curve = Curves.ease;
-      var curveTween = CurveTween(curve: curve);
-
+      final curveTween = CurveTween(curve: curve);
       final tween = Tween(begin: begin, end: end).chain(curveTween);
 
       return SlideTransition(
