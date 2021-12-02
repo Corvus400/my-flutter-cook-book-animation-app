@@ -1,3 +1,7 @@
+import 'package:animation_cook_book_app/contents/fade_widget.dart';
+import 'package:animation_cook_book_app/contents/my_transition.dart';
+import 'package:animation_cook_book_app/contents/phisics_simulation.dart';
+import 'package:animation_cook_book_app/contents/properties_container.dart';
 import 'package:flutter/material.dart';
 
 import 'data/bottom_navigation_type.dart';
@@ -54,7 +58,7 @@ class _HomeState extends State<Home> with RestorationMixin {
         title: Text(_title(BottomNavigationType.values[_currentIndex.value]))
       ),
       body: Center(
-        child: Container(),
+        child: _buildContents(BottomNavigationType.values[_currentIndex.value])
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: bottomNavigationBarItems,
@@ -90,6 +94,19 @@ class _HomeState extends State<Home> with RestorationMixin {
         return 'Animate the properties of a container';
       case BottomNavigationType.fade:
         return 'Fade a widget in and out';
+    }
+  }
+
+  Widget _buildContents(BottomNavigationType type) {
+    switch (type) {
+      case BottomNavigationType.transition:
+        return const MyTransition();
+      case BottomNavigationType.physics:
+        return const PhysicsSimulation();
+      case BottomNavigationType.properties:
+        return const PropertiesContainer();
+      case BottomNavigationType.fade:
+        return const FadeWidget();
     }
   }
 }
