@@ -1,3 +1,4 @@
+import 'package:animation_cook_book_app/data/bottom_navigation_type.dart';
 import 'package:animation_cook_book_app/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,10 @@ class FlutterAnimationCookBookApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Animation Cook Book App',
-      home: Home(),
+      home: const Home(
+        restorationId: 'home_bottom_navigation',
+        type: BottomNavigationType.transition,
+      ),
       routes: kRoutes,
     );
   }
