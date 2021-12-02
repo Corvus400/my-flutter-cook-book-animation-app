@@ -10,6 +10,8 @@ class MyTransition extends StatefulWidget {
 class _MyTransitionState extends State<MyTransition> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Center(
+      child: Text('Animate a page route transition'),
+    );
   }
 }
