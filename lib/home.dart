@@ -28,7 +28,7 @@ class _HomeState extends State<Home> with RestorationMixin {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
+    final fontSize = Theme.of(context).textTheme.caption?.fontSize ?? 0;
 
     var bottomNavigationBarItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(
@@ -60,6 +60,8 @@ class _HomeState extends State<Home> with RestorationMixin {
         items: bottomNavigationBarItems,
         currentIndex: _currentIndex.value,
         type: BottomNavigationBarType.fixed,
+        selectedFontSize: fontSize,
+        unselectedFontSize: fontSize,
         onTap: (index) {
           setState(() {
             _currentIndex.value = index;
