@@ -6,11 +6,9 @@ class Home extends StatefulWidget {
   const Home({
     Key? key,
     required this.restorationId,
-    required this.type
   }) : super(key: key);
 
   final String restorationId;
-  final BottomNavigationType type;
 
   @override
   _HomeState createState() => _HomeState();
@@ -53,7 +51,7 @@ class _HomeState extends State<Home> with RestorationMixin {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(_title(context))
+        title: Text(_title(BottomNavigationType.values[_currentIndex.value]))
       ),
       body: Center(
         child: Container(),
@@ -80,12 +78,12 @@ class _HomeState extends State<Home> with RestorationMixin {
     super.dispose();
   }
 
-  String _title(BuildContext context) {
-    switch (widget.type) {
+  String _title(BottomNavigationType type) {
+    switch (type) {
       case BottomNavigationType.transition:
         return 'Animate a page route transition';
       case BottomNavigationType.physics:
-        return 'Animate a widget using a physics simulation';
+        return 'Physics simulation';
       case BottomNavigationType.properties:
         return 'Animate the properties of a container';
       case BottomNavigationType.fade:

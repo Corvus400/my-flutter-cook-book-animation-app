@@ -13,7 +13,6 @@ class FlutterAnimationCookBookApp extends StatelessWidget {
       title: 'Flutter Animation Cook Book App',
       home: const Home(
         restorationId: 'home_bottom_navigation',
-        type: BottomNavigationType.transition,
       ),
       routes: kRoutes,
     );
