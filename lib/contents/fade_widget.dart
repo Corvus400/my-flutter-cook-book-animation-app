@@ -10,8 +10,12 @@ class FadeWidget extends StatefulWidget {
 class _FadeWidgetState extends State<FadeWidget> {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Fade a widget in and out'),
+    return Center(
+      child: Container(
+        width: 200.0,
+        height: 200.0,
+        color: Colors.green,
+      )
     );
   }
 }
