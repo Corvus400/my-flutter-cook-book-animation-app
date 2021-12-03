@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/physics.dart';
 
 class PhysicsSimulation extends StatefulWidget {
   const PhysicsSimulation({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class PhysicsSimulation extends StatefulWidget {
 class _PhysicsSimulationState extends State<PhysicsSimulation> {
   @override
   Widget build(BuildContext context) {
-    return DraggableCard(
+    return const DraggableCard(
         child: FlutterLogo(
             size: 128
         )
@@ -60,7 +61,7 @@ class _DraggableCardState extends State<DraggableCard> with SingleTickerProvider
         });
       },
       onPanEnd: (details) {
-        _runAnimation();
+        _runAnimation(details.velocity.pixelsPerSecond, size);
       },
       child: Align(
         alignment: _dragAlignment,
@@ -77,15 +78,28 @@ class _DraggableCardState extends State<DraggableCard> with SingleTickerProvider
     super.dispose();
   }
 
-  void _runAnimation() {
+  void _runAnimation(Offset pixelsPerSecond, Size size) {
     _animation = _controller.drive(
       AlignmentTween(
         begin: _dragAlignment,
         end: Alignment.center,
       ),
     );
-    _controller.reset();
-    _controller.forward();
+
+    final unitsPerSecondX = pixelsPerSecond.dx / size.width;
+    final unitsPerSecondY = pixelsPerSecond.dy / size.height;
+    final unitsPerSecond = Offset(unitsPerSecondX, unitsPerSecondY);
+    final unitVelocity = unitsPerSecond.distance;
+
+    const spring = SpringDescription(
+      mass: 30,
+      stiffness: 1,
+      damping: 1,
+    );
+
+    final simulation = SpringSimulation(spring, 0, 1, -unitVelocity);
+
+    _controller.animateWith(simulation);
   }
 }
 
