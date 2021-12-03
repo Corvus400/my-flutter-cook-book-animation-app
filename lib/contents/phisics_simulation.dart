@@ -10,8 +10,41 @@ class PhysicsSimulation extends StatefulWidget {
 class _PhysicsSimulationState extends State<PhysicsSimulation> {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Animate a widget using a physics simulation'),
+    return DraggableCard(
+        child: FlutterLogo(
+            size: 128
+        )
     );
   }
 }
+
+class DraggableCard extends StatefulWidget {
+  const DraggableCard({required this.child, Key? key}) : super(key: key);
+
+  final Widget child;
+
+  @override
+  _DraggableCardState createState() => _DraggableCardState();
+}
+
+class _DraggableCardState extends State<DraggableCard> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      child: Card(
+        child: widget.child
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+}
+
