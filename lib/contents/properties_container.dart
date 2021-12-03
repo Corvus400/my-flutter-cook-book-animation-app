@@ -8,10 +8,24 @@ class PropertiesContainer extends StatefulWidget {
 }
 
 class _PropertiesContainerState extends State<PropertiesContainer> {
+  final double _width = 50;
+  final double _height = 50;
+  final Color _color = Colors.green;
+  final BorderRadiusGeometry _borderRadius = BorderRadius.circular(8);
+
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Animate the properties of a container'),
+    return Center(
+      child: AnimatedContainer(
+        width: _width,
+        height: _height,
+        decoration: BoxDecoration(
+          color: _color,
+          borderRadius: _borderRadius,
+        ),
+        duration: const Duration(seconds: 1),
+        curve: Curves.fastOutSlowIn,
+      ),
     );
   }
 }
